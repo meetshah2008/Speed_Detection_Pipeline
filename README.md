@@ -25,6 +25,8 @@ Speed_Detection_Pipeline/
 |  |- images/
 |     |- zone_sample.png
 |     |- zone_real_dimensions_sample.png
+|- alerts/
+|  |- alert_f000001_id12_s34.jpg
 |- main.py
 |- .env.example
 |- requirements.txt
@@ -136,6 +138,12 @@ How to use:
 	python main.py
 
 3. When a vehicle crosses speed limit, you should see alert logs in server terminal.
+
+4. On every overspeed alert event, the current annotated frame is saved in the alerts folder.
+
+   Example filename:
+
+	alert_f000120_id7_s28.jpg
 
 > **NOTE:** If you do not see alerts, lower `SPEED_LIMIT_KMH` in `.env` for testing.
 
