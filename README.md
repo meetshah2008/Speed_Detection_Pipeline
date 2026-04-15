@@ -75,23 +75,31 @@ Use this sample to understand how to draw the road zone in correct order (1 -> 2
 
 ## Setup
 
-1. Create and activate your environment.
+1. Clone repository and move into project folder:
 
-2. Install PyTorch with CUDA 12.1 first:
+	git clone <your-github-repo-url>
+	cd Speed_Detection_Pipeline
+
+2. Create and activate conda environment:
+
+	conda create --name myenv python=3.10
+	conda activate myenv
+
+3. Install PyTorch with CUDA 12.1 first:
 
 	pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 > **NOTE:** Install this before `pip install -r requirements.txt` to avoid CUDA mismatch issues.
 
-3. Install project requirements:
+4. Install project requirements:
 
 	pip install -r requirements.txt
 
-4. Copy env template:
+5. Copy env template:
 
 	copy .env.example .env
 
-5. Edit .env values for your system (model path, video path, API URL, speed limit).
+6. Edit .env values for your system (model path, video path, API URL, speed limit).
 
 Important for this repo:
 
@@ -228,6 +236,20 @@ Quick workflow:
 7. Mock server for verification
 - `mock/server.py` makes API testing easy before real backend integration.
 - Confirms that overspeed events are actually being sent.
+
+## Future Work
+
+1. TensorRT optimization
+- Export model to TensorRT for faster inference and lower latency on supported GPUs.
+
+2. Better UI layer
+- Add a simple dashboard to view live detections, speed logs, and alert screenshots.
+
+3. Notification module expansion
+- Keep API handler modular and add pluggable channels like email, SMS, and push notifications.
+
+4. More robust backend integration
+- Add event queue, retry logic, and alert history storage for production reliability.
 
 ## Author Note
 
