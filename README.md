@@ -2,6 +2,21 @@
 
 This project detects vehicles, estimates speed, and sends API alerts for overspeed vehicles.
 
+## Best Use Case
+
+One strong use case is inside college campuses where roads are narrow and students walk frequently.
+
+In many campuses, delivery and ride vehicles (for example, food delivery or bike taxi riders) may drive too fast in internal lanes.
+
+This pipeline can help by:
+
+1. Detecting overspeed movement in the selected road zone.
+2. Triggering an alert immediately.
+3. Saving the alert frame screenshot in the alerts folder.
+4. Sharing that screenshot with security staff for quick on-ground action.
+
+This approach works even without number plate recognition, because the immediate goal is safety intervention at that moment and location.
+
 ## Project Files
 
 ```text
