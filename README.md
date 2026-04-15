@@ -7,6 +7,7 @@ This project detects vehicles, estimates speed, and sends API alerts for overspe
 Speed_Detection_Pipeline/
 |- data/
 |  |- testing_1.mp4
+|  |- testing_2.mp4
 |- detection/
 |  |- detector.py
 |- metadata/
@@ -76,6 +77,30 @@ Important for this repo:
 
 - Default test video is in data/testing_1.mp4
 - Keep VIDEO_PATH in .env as ./data/testing_1.mp4 unless you want another video
+
+## Test Data (Google Drive)
+
+Drive folder:
+
+https://drive.google.com/drive/folders/1ot06Z9VoJ4Gg-rlexvjWXcv2LPyZilPx?usp=drive_link
+
+This folder contains:
+
+- testing_1.mp4
+- testing_2.mp4
+
+How to use:
+
+1. Download one or both videos.
+2. Put them inside the local data folder:
+
+	Speed_Detection_Pipeline/data/
+
+3. In .env, set VIDEO_PATH to whichever file you want to run:
+
+	VIDEO_PATH=./data/testing_1.mp4
+	or
+	VIDEO_PATH=./data/testing_2.mp4
 
 ## Run Pipeline + Alert Test
 
