@@ -163,6 +163,16 @@ How to use:
 
 	python mock/server.py
 
+   If server does not start, port 8000 may already be in use.
+
+   Windows quick check:
+
+	netstat -ano | findstr :8000
+
+   Then stop that PID if needed:
+
+	taskkill /PID <PID_NUMBER> /F
+
 2. Run speed pipeline in terminal 2:
 
 	python main.py
