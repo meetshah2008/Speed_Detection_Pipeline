@@ -146,5 +146,5 @@ class ZoneSelector:
 
 if __name__ == "__main__":
     root_dir = Path(__file__).resolve().parents[2]
-    video = root_dir / "Input" / "out.mp4"
+    video = root_dir / "Speed_Detection_Pipeline" / "data" / "testing_1.mp4"
     ZoneSelector(str(video))

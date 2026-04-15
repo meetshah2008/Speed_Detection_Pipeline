@@ -62,10 +62,10 @@ TARGET_FPS = _env_int("TARGET_FPS", 5)
 # =========================
 SRC_POINTS = np.array(
     [
-    (467, 274),   # Point 1 (top-left)
-    (786, 368),   # Point 2 (top-right)
-    (769, 495),   # Point 3 (bottom-right)
-    (435, 375)    # Point 4 (bottom-left)
+    (152, 124),   # Point 1 (top-left)
+    (610, 175),   # Point 2 (top-right)
+    (639, 324),   # Point 3 (bottom-right)
+    (153, 340)    # Point 4 (bottom-left)
 ],
     dtype=np.float32,
 )

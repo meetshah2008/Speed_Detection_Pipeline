@@ -5,6 +5,8 @@ This project detects vehicles, estimates speed, and sends API alerts for overspe
 ## Project Files
 
 Speed_Detection_Pipeline/
+|- data/
+|  |- testing_1.mp4
 |- detection/
 |  |- detector.py
 |- metadata/
@@ -70,6 +72,11 @@ It will show a warped preview so you can validate your zone.
 
 5. Edit .env values for your system (model path, video path, API URL, speed limit).
 
+Important for this repo:
+
+- Default test video is in data/testing_1.mp4
+- Keep VIDEO_PATH in .env as ./data/testing_1.mp4 unless you want another video
+
 ## Run Pipeline + Alert Test
 
 1. Start mock server in terminal 1:
@@ -91,6 +98,14 @@ Use the clicked points to update road zone in main.py if needed.
 ## Very Important: Update These 2 Things In main.py
 
 Before final run, make sure these are correct for your camera and road.
+
+Current project calibration already set in main.py:
+
+- SRC_POINTS = [(152,124), (610,175), (639,324), (153,340)]
+- REAL_ROAD_WIDTH_METERS = 6.0
+- REAL_ROAD_LENGTH_METERS = 16.5
+
+If you are using the same camera view, keep these values as-is.
 
 1. Zone points (SRC_POINTS)
 
