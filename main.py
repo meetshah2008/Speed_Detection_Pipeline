@@ -49,6 +49,7 @@ def _env_path(name, default):
 MODEL_PATH = _env_path("MODEL_PATH", ROOT_DIR / "yolov8l.pt")
 VIDEO_PATH = _env_path("VIDEO_PATH", ROOT_DIR / "Input" / "out.mp4")
 OUTPUT_PATH = _env_path("OUTPUT_PATH", ROOT_DIR / "Output" / "speed_annotated_submission.mp4")
+ALERTS_DIR = _env_path("ALERTS_DIR", PROJECT_DIR / "alerts")
 
 # =========================
 # FRAME / PROCESSING CONFIG
@@ -152,6 +153,8 @@ def run_pipeline():
         speed_limit_kmh=SPEED_LIMIT_KMH,
     )
     api_handler = APIHandler(api_url=API_URL, timeout=API_TIMEOUT_SEC)
+    alerts_dir = Path(ALERTS_DIR)
+    alerts_dir.mkdir(parents=True, exist_ok=True)
 
     cap = cv2.VideoCapture(VIDEO_PATH)
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -214,6 +217,12 @@ def run_pipeline():
 
             if speed_info["should_alert"] and speed_info["speed_kmh"] is not None:
                 api_handler.send_alert(speed_info["track_id"], speed_info["speed_kmh"])
+
+                speed_kmh = int(round(speed_info["speed_kmh"]))
+                alert_file = alerts_dir / (
+                    f"alert_f{frame_idx:06d}_id{speed_info['track_id']}_s{speed_kmh}.jpg"
+                )
+                cv2.imwrite(str(alert_file), frame)
 
         estimator.cleanup_lost_tracks(current_track_ids)
 
