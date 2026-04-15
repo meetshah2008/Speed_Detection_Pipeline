@@ -44,7 +44,7 @@ When overspeed happens, the server prints:
 - alert path (/speed)
 - request body (vehicle_id and speed)
 
-## What is tools/zone.py?
+## What is tools/zone.py? (Very Very IMP do this carefully)
 
 tools/zone.py helps you select 4 road points on the first video frame.
 
