@@ -52,7 +52,7 @@ class MetadataBridge:
             [0,     h - 1]
         ], dtype=np.float32)
 
-        self.H                  = cv2.getPerspectiveTransform(src_ordered, dst_points)
+        self.H                  = cv2.getPerspectiveTransform(src_ordered, dst_points) # Compute homography matrix
         self.src_ordered        = src_ordered
         self.warped_w           = w
         self.warped_h           = h
