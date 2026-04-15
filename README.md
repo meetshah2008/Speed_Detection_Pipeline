@@ -131,6 +131,8 @@ Current project calibration already set in main.py:
 - REAL_ROAD_WIDTH_METERS = 6.0
 - REAL_ROAD_LENGTH_METERS = 16.5
 
+Note: REAL_ROAD_WIDTH_METERS and REAL_ROAD_LENGTH_METERS were measured manually by me on-site using shoe-feet stepping approximation.
+
 If you are using the same camera view, keep these values as-is.
 
 1. Zone points (SRC_POINTS)
