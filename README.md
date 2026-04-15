@@ -2,6 +2,13 @@
 
 This project detects vehicles, estimates speed, and sends API alerts for overspeed vehicles.
 
+## Full Demo Video
+
+A complete end-to-end demo (environment setup -> run -> API alerts -> saved alert frames) is available in the same Google Drive folder as the test videos.
+
+- File name: Full_Demo_Video.mp4
+- Drive folder: https://drive.google.com/drive/folders/1ot06Z9VoJ4Gg-rlexvjWXcv2LPyZilPx?usp=drive_link
+
 ## Best Use Case
 
 One strong use case is inside college campuses where roads are narrow and students walk frequently.
