@@ -12,10 +12,24 @@ from ultralytics import YOLO
 VEHICLE_CLASSES = {1, 2, 3, 5, 7}
 
 class DetectionEngine:
-    def __init__(self, model_path="yolov8m.pt", imgsz=1280, conf=0.25):
+    def __init__(self, model_path="yolov8m.pt", imgsz=1280, conf=0.25, device=None):
         self.model  = YOLO(model_path)
         self.imgsz  = imgsz
         self.conf   = conf
+        self.device = device
+        self._cpu_fallback_active = False
+
+    def _track(self, frame):
+        track_kwargs = {
+            "imgsz": self.imgsz,
+            "conf": self.conf,
+            "persist": True,
+            "tracker": "bytetrack.yaml",
+            "verbose": False,
+        }
+        if self.device is not None:
+            track_kwargs["device"] = self.device
+        return self.model.track(frame, **track_kwargs)[0]
 
     def detect(self, frame):
         """
@@ -23,14 +37,17 @@ class DetectionEngine:
 
         Returns a list of dictionaries, each containing the track ID, bounding box, center coordinates, and class ID for each detected vehicle.
         """
-        results = self.model.track(
-            frame,
-            imgsz=self.imgsz,
-            conf=self.conf,
-            persist=True,               
-            tracker="bytetrack.yaml",
-            verbose=False
-        )[0]
+        try:
+            results = self._track(frame)
+        except NotImplementedError as exc:
+            # Common on Windows when torch/torchvision CUDA builds are mismatched.
+            if "torchvision::nms" in str(exc) and not self._cpu_fallback_active:
+                self.device = "cpu"
+                self._cpu_fallback_active = True
+                print("\n[WARN] CUDA NMS unavailable; switching detector to CPU.")
+                results = self._track(frame)
+            else:
+                raise
 
         detections = []
 

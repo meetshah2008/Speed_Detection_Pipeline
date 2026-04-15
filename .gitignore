@@ -1,0 +1,72 @@
+# -----------------------------
+# Python cache / bytecode
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Native/compiled artifacts
+*.so
+*.pyd
+*.dll
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+env/
+
+# -----------------------------
+# Environment / secrets
+# -----------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------
+# Test / lint / coverage caches
+# -----------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# -----------------------------
+# Build / packaging
+# -----------------------------
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# -----------------------------
+# IDE / OS junk
+# -----------------------------
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# -----------------------------
+# Logs / runtime artifacts
+# -----------------------------
+*.log
+runs/
+
+# -----------------------------
+# Vision project heavy artifacts
+# -----------------------------
+Input/
+Output/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.pt
+*.onnx
+*.engine
+*.tflite
