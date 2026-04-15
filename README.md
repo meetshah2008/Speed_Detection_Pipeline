@@ -24,6 +24,7 @@ Speed_Detection_Pipeline/
 |- docs/
 |  |- images/
 |     |- zone_sample.png
+|     |- zone_real_dimensions_sample.png
 |- main.py
 |- .env.example
 |- requirements.txt
@@ -40,6 +41,8 @@ Speed_Detection_Pipeline/
 ## What is mock/server.py?
 
 mock/server.py is a local mock API server.
+
+> **NOTE:** This is for local testing only. It is not your production backend.
 
 Use it to confirm your alert POST requests are working.
 When overspeed happens, the server prints:
@@ -60,6 +63,8 @@ Click in this order:
 
 It will show a warped preview so you can validate your zone.
 
+> **IMPORTANT:** Always keep the click order exactly as **TL -> TR -> BR -> BL**.
+
 ### Zone Drawing Sample
 
 Use this sample to understand how to draw the road zone in correct order (1 -> 2 -> 3 -> 4):
@@ -73,6 +78,8 @@ Use this sample to understand how to draw the road zone in correct order (1 -> 2
 2. Install PyTorch with CUDA 12.1 first:
 
 	pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+> **NOTE:** Install this before `pip install -r requirements.txt` to avoid CUDA mismatch issues.
 
 3. Install project requirements:
 
@@ -88,6 +95,8 @@ Important for this repo:
 
 - Default test video is in data/testing_1.mp4
 - Keep VIDEO_PATH in .env as ./data/testing_1.mp4 unless you want another video
+
+> **NOTE:** Keep file names exactly `testing_1.mp4` and `testing_2.mp4` if you use README defaults.
 
 ## Test Data (Google Drive)
 
@@ -114,6 +123,8 @@ How to use:
 	or
 	VIDEO_PATH=./data/testing_2.mp4
 
+> **IMPORTANT:** If `VIDEO_PATH` is wrong, pipeline will fail to read FPS and stop.
+
 ## Run Pipeline + Alert Test
 
 1. Start mock server in terminal 1:
@@ -125,6 +136,8 @@ How to use:
 	python main.py
 
 3. When a vehicle crosses speed limit, you should see alert logs in server terminal.
+
+> **NOTE:** If you do not see alerts, lower `SPEED_LIMIT_KMH` in `.env` for testing.
 
 ## Optional: Run Zone Selector
 
@@ -142,7 +155,15 @@ Current project calibration already set in main.py:
 - REAL_ROAD_WIDTH_METERS = 6.0
 - REAL_ROAD_LENGTH_METERS = 16.5
 
-Note: REAL_ROAD_WIDTH_METERS and REAL_ROAD_LENGTH_METERS were measured manually by me on-site using shoe-feet stepping approximation.
+Note: `REAL_ROAD_WIDTH_METERS` and `REAL_ROAD_LENGTH_METERS` are **not** full road width/length. They represent the real-world width and length of the **selected zone (ROI)** only. These values were measured manually by me on-site using shoe-feet stepping approximation.
+
+### Zone Real-World Dimension Reference
+
+This sample shows the exact zone used for mapping real-world width/length in the speed calculation:
+
+![Zone real-world dimensions sample](docs/images/zone_real_dimensions_sample.png)
+
+> **IMPORTANT:** Wrong zone points or wrong real road dimensions will directly give wrong speed values.
 
 If you are using the same camera view, keep these values as-is.
 
@@ -160,6 +181,7 @@ If you are using the same camera view, keep these values as-is.
 - In main.py, update:
 	- REAL_ROAD_WIDTH_METERS
 	- REAL_ROAD_LENGTH_METERS
+- These are the real-world dimensions of your selected **zone**, not the full visible road.
 - These values are used to convert pixel movement to real speed.
 - If these values are wrong, displayed speed will be wrong.
 
