@@ -192,13 +192,36 @@ Quick workflow:
 3. Set correct road width/length in meters
 4. Run main.py and verify speed labels
 
-## Simple Email Notification Architecture (Client Scenario)
+## Design Choices (Simple Reasoning)
 
-In production, do this flow:
+1. Modular structure
+- Split into detection, metadata, logic, and API modules to match assignment and keep code easy to maintain.
 
-1. Pipeline sends overspeed event to backend API.
-2. Backend stores event and pushes notification job.
-3. Notification service sends email.
-4. Backend stores email delivery status.
+2. YOLO + ByteTrack for detection/tracking
+- YOLO gives strong object detection.
+- ByteTrack keeps stable IDs across frames, which is needed for speed estimation.
 
-This keeps CV pipeline fast and notification system reliable.
+3. Homography for real-world speed
+- Pixel motion alone is not real speed.
+- Homography maps movement into a road-aligned view so distance can be converted to meters.
+
+4. Frame skipping + effective FPS
+- Processing every frame is heavy.
+- We process at target FPS and use effective FPS in formula so speed remains consistent.
+
+5. EMA smoothing + speed cap
+- Raw frame-to-frame speed can jump due to detector noise.
+- EMA smooths values and max-speed cap removes unrealistic spikes.
+
+6. API action decoupled from core logic
+- Detection/speed logic should not depend on backend implementation.
+- API handler is separate so alert integration can change without touching core pipeline.
+
+7. Mock server for verification
+- `mock/server.py` makes API testing easy before real backend integration.
+- Confirms that overspeed events are actually being sent.
+
+## Author Note
+
+- Core logic, implementation decisions, and project integration were done by me.
+- I used GPT Copilot support for formatting, documentation polishing, and minor cleanup help.
