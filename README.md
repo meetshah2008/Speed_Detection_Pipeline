@@ -21,6 +21,9 @@ Speed_Detection_Pipeline/
 |  |- server.py
 |- tools/
 |  |- zone.py
+|- docs/
+|  |- images/
+|     |- zone_sample.png
 |- main.py
 |- .env.example
 |- requirements.txt
@@ -56,6 +59,12 @@ Click in this order:
 4. Bottom-left
 
 It will show a warped preview so you can validate your zone.
+
+### Zone Drawing Sample
+
+Use this sample to understand how to draw the road zone in correct order (1 -> 2 -> 3 -> 4):
+
+![Zone drawing sample](docs/images/zone_sample.png)
 
 ## Setup
 
@@ -141,10 +150,10 @@ If you are using the same camera view, keep these values as-is.
 
 - In main.py, update SRC_POINTS with the 4 points you got from zone.py.
 - Keep this click/order format:
-	- Top-left
-	- Top-right
-	- Bottom-right
-	- Bottom-left
+	- 1) Top-left
+	- 2) Top-right
+	- 3) Bottom-right
+	- 4) Bottom-left
 
 2. Real road size
 
