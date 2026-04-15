@@ -58,7 +58,7 @@ FRAME_HEIGHT = _env_int("FRAME_HEIGHT", 600)
 TARGET_FPS = _env_int("TARGET_FPS", 5)
 
 # =========================
-# ROAD / HOMOGRAPHY CONFIG
+# ROAD / HOMOGRAPHY CONFIG  -- for testing video 1
 # =========================
 SRC_POINTS = np.array(
     [
@@ -69,6 +69,20 @@ SRC_POINTS = np.array(
 ],
     dtype=np.float32,
 )
+
+# # =========================
+# # ROAD / HOMOGRAPHY CONFIG  -- for testing video 2
+# # =========================
+# SRC_POINTS = np.array(
+#     [
+#     (467, 274),   # Point 1 (top-left)
+#     (786, 368),   # Point 2 (top-right)
+#     (769, 495),   # Point 3 (bottom-right)
+#     (435, 375)    # Point 4 (bottom-left)
+# ],
+#     dtype=np.float32,
+# )
+
 REAL_ROAD_WIDTH_METERS = 6.0
 REAL_ROAD_LENGTH_METERS = 16.5
 
