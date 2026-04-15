@@ -88,6 +88,7 @@ This folder contains:
 
 - testing_1.mp4
 - testing_2.mp4
+- Speed_Annotated_Outputs/ (annotated speed output videos for both test videos)
 
 How to use:
 
