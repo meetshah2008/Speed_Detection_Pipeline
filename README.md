@@ -4,6 +4,7 @@ This project detects vehicles, estimates speed, and sends API alerts for overspe
 
 ## Project Files
 
+```text
 Speed_Detection_Pipeline/
 |- data/
 |  |- testing_1.mp4
@@ -24,6 +25,7 @@ Speed_Detection_Pipeline/
 |- .env.example
 |- requirements.txt
 |- README.md
+```
 
 ## Module Mapping (Assignment)
 
